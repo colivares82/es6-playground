@@ -6,15 +6,38 @@
     </head>
     <body>
         <script>
-            const key = 'abc123';
-            let points = 50;
+            {  /** The reason to have this brackets is because if what ist called IIFE
+                * So basically to avoid the scope of the variables to go over the Window
+                *  I need to do this, of call an anonymous function (function () {code})()
+                **/
 
-            const person = {
-                name: 'Carlos',
-                age: 36
-            };
-            // Object.freeze block the posibility to modify a object key
-            const personInstance = Object.freeze(person);
+              /**
+               * DEFINITION:  Temporal Death Zone is whe you use a VAR before is declared, which is UNDEFINED
+               * But if you use a LET or a CONST instead, an error will  occur and the code breaks
+               **/
+
+                const key = 'abc123';
+                let points = 50;
+
+                const person = {
+                    name: 'Carlos',
+                    age: 36
+                };
+                // Object.freeze block the possibility to modify a object key
+                const personInstance = Object.freeze(person);
+
+                for(let i = 0; i < 10; i++) {
+                    /**
+                     *  Since LET scope is dependent on the block {}, then the i
+                     *  value is dependent for the loop, if instead  of LET
+                     *  I use VAR, "the number is 10, will show 10 times
+                     */
+                    console.log(i);
+                    setTimeout(function() {
+                        console.log('The number is ' + i);
+                    },1000);
+                }
+            }
         </script>
     </body>
 </html>
