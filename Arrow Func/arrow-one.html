@@ -30,6 +30,33 @@
             const old = ages.filter(age => age >= 60);
 
 
+            // Select element from the DOM using class
+            const box = document.querySelector('.box');
+            // Adding eventListeners to a element from the DOM
+            /**
+             *  The thing with this First Function that can not be an arrow, its because
+             *  it gets the parent scope, and for the main one, its the WINDOW, so if we
+             *  want that THIS point to the element selected (box), it has to be a normal function
+             */
+
+            box.addEventListener('click', function() {
+                let first = 'opening';
+                let second = 'open';
+
+                if(this.classList.contains(first)) {
+                    // Deconstructing , and that way we can change values whitout using temporal
+                    [first, second] = [second, first];
+                }
+                // Lets assume that this adds or remove a class to a DOM element
+                this.classList.toggle(first);
+                /*In this case we HAVE to use an arrow function because we
+                * need to refer to the parent scope, so THIS will be binded to the BOX element
+                * which lives on the parent under THIS
+                */
+                setTimeout(() => {
+                    this.classList.toggle(second);
+                }, 250);
+            });
 
         </script>
     </body>
